@@ -33,6 +33,7 @@ module Jekyll
           self.data = YAML.load($1)
         end
       rescue => e
+        puts "*******"
         puts "YAML Exception reading #{name}: #{e.message}"
       end
 
