@@ -220,6 +220,7 @@ module Jekyll
     def to_liquid
       self.data.deep_merge({
         "title"      => self.data["title"] || self.slug.split('-').select {|w| w.capitalize! || w }.join(' '),
+        "hide_title" => self.hide_title,
         "url"        => self.url,
         "date"       => self.date,
         "id"         => self.id,
