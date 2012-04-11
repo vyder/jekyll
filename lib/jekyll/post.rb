@@ -20,7 +20,7 @@ module Jekyll
 
     attr_accessor :site
     attr_accessor :data, :content, :output, :ext
-    attr_accessor :date, :slug, :published, :tags, :categories
+    attr_accessor :date, :slug, :hidetitle, :published, :tags, :categories
 
     attr_reader :name
 
@@ -51,6 +51,14 @@ module Jekyll
         self.published = false
       else
         self.published = true
+      end
+
+      if self.data.has_key?('hidetitle') && self.data['hidetitle'] == true
+        self.hidetitle = true
+        self.data['hidetitle'] = true
+      else
+        self.hidetitle = false
+        self.data['hidetitle'] = false
       end
 
       self.tags = self.data.pluralized_array("tag", "tags")
@@ -220,7 +228,6 @@ module Jekyll
     def to_liquid
       self.data.deep_merge({
         "title"      => self.data["title"] || self.slug.split('-').select {|w| w.capitalize! || w }.join(' '),
-        "hide_title" => self.hide_title,
         "url"        => self.url,
         "date"       => self.date,
         "id"         => self.id,
