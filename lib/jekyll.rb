@@ -116,7 +116,6 @@ module Jekyll
     # _config.yml may override default source location, but until
     # then, we need to know where to look for _config.yml
     source = override['source'] || Jekyll::DEFAULTS['source']
-    puts "*******"
     # Get configuration from <source>/_config.yml
     config_file = File.join(source, '_config.yml')
     begin
